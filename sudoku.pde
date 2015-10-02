@@ -1,7 +1,10 @@
+boolean[][][] sudoku;
+int result;
+
 void setup () {
   
   // bij performance problemen schijnt delay() of frameRate() te helpen
-  
+  frameRate(0.5);
   
   // 3x3#361461781683972
   int[][] bord = {
@@ -21,11 +24,23 @@ void setup () {
   int len = bord.length*round(sqrt(bord.length))*pixels;
   size(len+1, len+1);
   
-  boolean[][][] sudoku = maak3Darray(bord);
+  sudoku = maak3Darray(bord);
+  result = REDUCED_TRUE;
   
-  solve(sudoku);
+  // solve(sudoku);
 
-  tekenBord(sudoku);
+  //tekenBord(sudoku);
 }
+
+void draw() {
+  
+  if (result != NO_CHANGE && result != ALL_FOUND) {
+    result = solveNext(sudoku);
+    tekenBord(sudoku);
+  }
+}
+
+
+
 
 
