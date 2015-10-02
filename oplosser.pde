@@ -1,7 +1,7 @@
 boolean[][][] maak3Darray(int[][] invoer)
 {
   int n = invoer.length;
-  boolean[][][] bord = new int[n][n][n];
+  boolean[][][] bord = new boolean[n][n][n];
   
   for (int x=0; x < invoer.length; x++)
     for (int y=0; y < invoer[x].length; y++) {
