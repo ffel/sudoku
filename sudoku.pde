@@ -14,11 +14,9 @@ void setup () {
   
   boolean[][][] sudoku = maak3Darray(bord);
   
-  // sudoku is pass by reference apparently
-  eliminate(sudoku, 3, 2);
+  solve(sudoku);
 
   tekenBord(sudoku);
-  
 }
 
 

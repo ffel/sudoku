@@ -1,3 +1,60 @@
+final int NO_CHANGE = 0;
+final int REDUCED_TRUE = 1;
+final int FOUND_VALUE = 2;
+final int ALL_FOUND = 3;
+
+boolean solve(boolean[][][] sudoku) {
+  
+  int result;
+  
+  do {
+    print("*");
+    result = solveNext(sudoku);
+  } while (result != NO_CHANGE && result != ALL_FOUND);
+  
+  if (result == ALL_FOUND)
+    return true;
+  
+  return false;
+}
+
+// solve the next and return flag if managed to do so
+int solveNext(boolean[][][] sudoku)
+{
+  int result = NO_CHANGE;
+  boolean completed = true;
+  boolean foundAny = false;
+  boolean reducedAny = false;
+  
+  for (int x=0; x<sudoku.length; x++)
+    for (int y=0; y<sudoku[x].length; y++) {
+      int before = calcCurrent(sudoku[x][y]);
+      
+      if (before < 0) {
+        completed = false;
+        int after = calcCurrent(eliminate(sudoku, x, y));
+        
+        if (after > 0) {
+          foundAny = true;
+        } else if (before < after) {
+          reducedAny = true;
+        }
+        
+      }
+    }
+
+  if (completed)
+    return ALL_FOUND;
+    
+  if (foundAny)
+    return FOUND_VALUE;
+    
+  if (reducedAny)
+    return REDUCED_TRUE;
+  
+  return NO_CHANGE;
+}
+
 // try to reduce the number of true's in the x y pos of sudoku
 boolean[] eliminate(boolean[][][] sudoku, int x, int y)
 {
@@ -60,9 +117,13 @@ int current(boolean[] value, int x, int y, int i, int j) {
   if(x==i && y==j)
     return -10;
   
+  return calcCurrent(value); 
+}
+
+int calcCurrent(boolean[] value) {
   int count = 0;
   int val = 0;
-  
+ 
   for (int k=0; k<value.length; k++) {
     if (value[k]) {
       val = k;
