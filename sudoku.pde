@@ -14,10 +14,10 @@ void setup () {
   
   boolean[][][] sudoku = maak3Darray(bord);
   
-  tekenBord(sudoku);
-  
-  // should return 4 in array terms
+  // sudoku is pass by reference apparently
   println(eliminate(sudoku, 3, 2));
+
+  tekenBord(sudoku);
   
 }
 

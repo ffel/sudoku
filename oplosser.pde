@@ -3,13 +3,26 @@ boolean[] eliminate(boolean[][][] sudoku, int x, int y)
 {
   boolean[] result = sudoku[x][y];
   
-  // along x
-  for (int i = 0; x < soduku.length; i++) {
+  // along x and y
+  for (int i = 0; i < sudoku.length; i++) {
+    // fixme: result itself is visited twice
+    // fixme: stop elimining if there is one true left
+    
+    // x
     int val = current(sudoku[i][y]);
     
     if (val >= 0)
       result[val] = false;
+    
+    // y
+    val = current(sudoku[x][i]);
+
+    if (val >= 0)
+      result[val] = false;
   }
+  
+  // check quadrant
+  // fixme: there are quite a number fields in quadrant which are already visited
   
   return result;
 }
@@ -26,7 +39,7 @@ int current(boolean[] value) {
     }
   }
   
-  if (count ==1)
+  if (count == 1)
     return val;
   
   // potential clash between (unexpected) count == -0 and current == 0

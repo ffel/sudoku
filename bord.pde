@@ -28,7 +28,7 @@ void tekenBord(boolean[][][] bord) {
           fill(220);
         }
         
-        rect(n*y*pixels+v%n*pixels, n*x*pixels+v/n*pixels,
+        rect(n*x*pixels+v%n*pixels, n*y*pixels+v/n*pixels,
           pixels, pixels);
           
       }
@@ -36,7 +36,7 @@ void tekenBord(boolean[][][] bord) {
       // print value if known
       if (possibilities == 1) {
         fill(255, 0, 0);
-        text(last+1, n*y*pixels + n/2*pixels, n*x*pixels + n/2*pixels);
+        text(last+1, n*x*pixels + n/2*pixels, n*y*pixels + n/2*pixels);
       }
     }
     

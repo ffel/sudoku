@@ -5,7 +5,9 @@ boolean[][][] maak3Darray(int[][] invoer)
   
   for (int x=0; x < invoer.length; x++)
     for (int y=0; y < invoer[x].length; y++) {
-      bord[x][y] = initWaarde(n, invoer[x][y]);
+      // dirty swap because invoer is in fact invoer[y][x] when
+      // defined explicitly (which is the case in setup).
+      bord[y][x] = initWaarde(n, invoer[x][y]);
     }
   
   return bord;
