@@ -1,25 +1,34 @@
-boolean[][][] maak3Darray(int[][] invoer)
+// try to reduce the number of true's in the x y pos of sudoku
+boolean[] eliminate(boolean[][][] sudoku, int x, int y)
 {
-  int n = invoer.length;
-  boolean[][][] bord = new boolean[n][n][n];
+  boolean[] result = sudoku[x][y];
   
-  for (int x=0; x < invoer.length; x++)
-    for (int y=0; y < invoer[x].length; y++) {
-      bord[x][y] = initWaarde(n, invoer[x][y]);
-    }
-  
-  return bord;
-}
-
-boolean[] initWaarde(int len, int value) {
-  boolean[] arr = new boolean[len];
-  
-  if (value == 0) {
-    for (int i = 0; i < arr.length; i++)
-      arr[i] = true;
-  } else {
-    arr[value-1] = true;
+  // along x
+  for (int i = 0; x < soduku.length; i++) {
+    int val = current(sudoku[i][y]);
+    
+    if (val >= 0)
+      result[val] = false;
   }
   
-  return arr;
+  return result;
+}
+
+// return current value if one true; else - nr of trues
+int current(boolean[] value) {
+  int count = 0;
+  int val = 0;
+  
+  for (int i=0; i<value.length; i++) {
+    if (value[i]) {
+      val = i;
+      count++;
+    }
+  }
+  
+  if (count ==1)
+    return val;
+  
+  // potential clash between (unexpected) count == -0 and current == 0
+  return -count;
 }

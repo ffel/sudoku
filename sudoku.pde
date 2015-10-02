@@ -12,8 +12,12 @@ void setup () {
   int len = bord.length*round(sqrt(bord.length))*pixels;
   size(len+1, len+1);
   
-  tekenBord(maak3Darray(bord));
+  boolean[][][] sudoku = maak3Darray(bord);
   
+  tekenBord(sudoku);
+  
+  // should return 4 in array terms
+  println(eliminate(sudoku, 3, 2));
   
 }
 
