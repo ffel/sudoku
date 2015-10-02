@@ -8,8 +8,8 @@ boolean solve(boolean[][][] sudoku) {
   int result;
   
   do {
-    print("*");
     result = solveNext(sudoku);
+    print(result);
   } while (result != NO_CHANGE && result != ALL_FOUND);
   
   if (result == ALL_FOUND)
