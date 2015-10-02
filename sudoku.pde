@@ -1,25 +1,20 @@
 void setup () {
+  
+  // bij performance problemen schijnt delay() of frameRate() te helpen
+  
   int[][] bord = {
     {3, 0, 0, 0}, 
     {0, 0, 0, 3}, 
     {2, 0, 0, 0}, 
     {0, 0, 0, 1} 
   };
+
+  int len = bord.length*round(sqrt(bord.length))*pixels;
+  size(len+1, len+1);
   
-  printSudoku(maak3Darray(bord));
+  tekenBord(maak3Darray(bord));
+  
+  
 }
 
-void printSudoku(boolean[][][] bord)
-{
-  for (int x = 0; x < bord.length; x++)
-  {
-    for (int y = 0; y < bord[x].length; y++)
-    {
-      println("veld:", x, y);
-      for (int v = 0; v < bord[x][y].length; v++) {
-        print(bord[x][y][v], "- ");
-      }
-      println("");
-    }
-  }
-}
+
